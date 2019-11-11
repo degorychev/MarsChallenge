@@ -111,6 +111,8 @@ namespace MarsChallenge
                 }
             }
             gr.Save();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
             return bm;
         }
 
