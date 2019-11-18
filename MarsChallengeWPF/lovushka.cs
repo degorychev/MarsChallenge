@@ -96,9 +96,14 @@ namespace MarsChallengeWPF
                     elements.Enqueue(GeneratorLine(width, starty + _height / 2, startx + _width / 2, starty));
                     break;
                 case detektor:
-                    elements.Enqueue(GeneratorLine(startx + _width / 2, starty, startx + _width / 2, height));
-                    elements.Enqueue(GeneratorLine(startx, starty + _height / 2, width, starty + _height / 2));
-
+                    elements.Enqueue(GeneratorLine(startx + _width / 2, starty, findcenter(startx, _width) - 5, findcenter(starty, _height) - 5));
+                    elements.Enqueue(GeneratorLine(findcenter(startx, _width) - 5, findcenter(starty, _height) - 5, startx, starty + _height / 2));
+                    elements.Enqueue(GeneratorLine(startx, starty + _height / 2, findcenter(startx, _width) - 5, findcenter(starty, _height) + 5));
+                    elements.Enqueue(GeneratorLine(findcenter(startx, _width) - 5, findcenter(starty, _height) + 5, startx + _width / 2, height));
+                    elements.Enqueue(GeneratorLine(startx + _width / 2, height, findcenter(startx, _width) + 5, findcenter(starty, _height) + 5));
+                    elements.Enqueue(GeneratorLine(findcenter(startx, _width) + 5, findcenter(starty, _height) + 5, width, starty + _height / 2));
+                    elements.Enqueue(GeneratorLine(width, starty + _height / 2, findcenter(startx, _width) + 5, findcenter(starty, _height) - 5));
+                    elements.Enqueue(GeneratorLine(findcenter(startx, _width) + 5, findcenter(starty, _height) - 5, startx + _width / 2, starty));
 
                     break;
                 default:
@@ -107,26 +112,9 @@ namespace MarsChallengeWPF
             return elements;
         }
 
-            //public Bitmap getImage(int width, int height)
-            //{
-            //    string strsvg;
-            //    switch (_vid)
-            //    {
-            //        case nul:
-            //            strsvg = System.Text.Encoding.UTF8.GetString(images.zero);
-            //            break;
-            //        case verevka:
-            //            strsvg = System.Text.Encoding.UTF8.GetString(images.romb);
-            //            break;
-            //        case detektor:
-            //            strsvg = System.Text.Encoding.UTF8.GetString(images.star);
-            //            break;
-            //        default:
-            //            strsvg = "ERROR";
-            //            break;
-            //    }
-            //    var svg = SvgDocument.FromSvg<SvgDocument>(strsvg); ;
-            //    return svg.Draw(width, height);
-            //}
+        private int findcenter(int x, int width)
+        {
+            return x + width / 2;
         }
+    }
 }

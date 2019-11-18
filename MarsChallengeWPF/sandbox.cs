@@ -141,7 +141,7 @@ namespace MarsChallengeWPF
                 for (int j = 1; j < moves.Count; j++)
                 {
                     Point newkoord = moves[j];
-                    elements.Enqueue(GeneratorLine(getCenter(koord, width, height), getCenter(newkoord, width, height)));
+                    elements.Enqueue(GeneratorLine(getCenter(koord, width, height), getCenter(newkoord, width, height), player.Tail));
                     //gr.DrawLine(new Pen(player.Tail), getCenter(koord, width, height), getCenter(newkoord, width, height));
                     koord = newkoord;
                 }
@@ -186,7 +186,7 @@ namespace MarsChallengeWPF
             */
             return elements;
         }
-        private Line GeneratorLine(Point p1, Point p2)
+        private Line GeneratorLine(Point p1, Point p2, Brush br)
         {
             Line output = new Line
             {
@@ -194,7 +194,7 @@ namespace MarsChallengeWPF
                 X2 = p2.X,
                 Y1 = p1.Y,
                 Y2 = p2.Y,
-                Stroke = Brushes.Gray,
+                Stroke = br,
                 StrokeThickness = 3
             };
             return output;
