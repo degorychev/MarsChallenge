@@ -61,9 +61,7 @@ namespace MarsChallengeWPF
 
         public bool activ()
         {
-            if (active == 0)
-                return false;
-            return true;
+            return !(active == 0);
         }
 
         private Line GeneratorLine(int _x1, int _y1, int _x2, int _y2)
@@ -96,20 +94,20 @@ namespace MarsChallengeWPF
                 case nul:
                     break;
                 case verevka:
-                    elements.Enqueue(GeneratorLine(startx + _width / 2, starty, startx, starty + _height / 2));
-                    elements.Enqueue(GeneratorLine(startx, starty + _height / 2, startx + _width / 2, height));
-                    elements.Enqueue(GeneratorLine(startx + _width / 2, height, width, starty + _height / 2));
-                    elements.Enqueue(GeneratorLine(width, starty + _height / 2, startx + _width / 2, starty));
+                    elements.Enqueue(GeneratorLine(findcenter(startx, _width), starty, startx, findcenter(starty, _height)));
+                    elements.Enqueue(GeneratorLine(startx, findcenter(starty, _height), findcenter(startx, _width), height));
+                    elements.Enqueue(GeneratorLine(findcenter(startx, _width), height, width, findcenter(starty, _height)));
+                    elements.Enqueue(GeneratorLine(width, findcenter(starty, _height), findcenter(startx, _width), starty));
                     break;
                 case detektor:
-                    elements.Enqueue(GeneratorLine(startx + _width / 2, starty, findcenter(startx, _width) - 5, findcenter(starty, _height) - 5));
-                    elements.Enqueue(GeneratorLine(findcenter(startx, _width) - 5, findcenter(starty, _height) - 5, startx, starty + _height / 2));
-                    elements.Enqueue(GeneratorLine(startx, starty + _height / 2, findcenter(startx, _width) - 5, findcenter(starty, _height) + 5));
-                    elements.Enqueue(GeneratorLine(findcenter(startx, _width) - 5, findcenter(starty, _height) + 5, startx + _width / 2, height));
-                    elements.Enqueue(GeneratorLine(startx + _width / 2, height, findcenter(startx, _width) + 5, findcenter(starty, _height) + 5));
-                    elements.Enqueue(GeneratorLine(findcenter(startx, _width) + 5, findcenter(starty, _height) + 5, width, starty + _height / 2));
-                    elements.Enqueue(GeneratorLine(width, starty + _height / 2, findcenter(startx, _width) + 5, findcenter(starty, _height) - 5));
-                    elements.Enqueue(GeneratorLine(findcenter(startx, _width) + 5, findcenter(starty, _height) - 5, startx + _width / 2, starty));
+                    elements.Enqueue(GeneratorLine(findcenter(startx, _width), starty, findcenter(startx, _width) - 5, findcenter(starty, _height) - 5));
+                    elements.Enqueue(GeneratorLine(findcenter(startx, _width) - 5, findcenter(starty, _height) - 5, startx, findcenter(starty, _height)));
+                    elements.Enqueue(GeneratorLine(startx, findcenter(starty, _height), findcenter(startx, _width) - 5, findcenter(starty, _height) + 5));
+                    elements.Enqueue(GeneratorLine(findcenter(startx, _width) - 5, findcenter(starty, _height) + 5, findcenter(startx, _width), height));
+                    elements.Enqueue(GeneratorLine(findcenter(startx, _width), height, findcenter(startx, _width) + 5, findcenter(starty, _height) + 5));
+                    elements.Enqueue(GeneratorLine(findcenter(startx, _width) + 5, findcenter(starty, _height) + 5, width, findcenter(starty, _height)));
+                    elements.Enqueue(GeneratorLine(width, findcenter(starty, _height), findcenter(startx, _width) + 5, findcenter(starty, _height) - 5));
+                    elements.Enqueue(GeneratorLine(findcenter(startx, _width) + 5, findcenter(starty, _height) - 5, findcenter(startx, _width), starty));
 
                     break;
                 default:

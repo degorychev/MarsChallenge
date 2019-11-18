@@ -12,6 +12,11 @@ namespace MarsChallengeWPF
         public const int vampus = 0;
         public const int koshka = 1;
         public const int privedenie = 2;
+
+        public static System.Windows.Media.Brush vampus_tail = System.Windows.Media.Brushes.Green;
+        public static System.Windows.Media.Brush koshka_tail = System.Windows.Media.Brushes.Blue;
+        public static System.Windows.Media.Brush privedenie_tail = System.Windows.Media.Brushes.Yellow;
+
         public int _vid;
         public System.Windows.Point _koord;
         public List<System.Windows.Point> moves;
@@ -29,11 +34,11 @@ namespace MarsChallengeWPF
         private void ColorSelect()
         {
             if (_vid == vampus)
-                Tail = System.Windows.Media.Brushes.Green;
+                Tail = vampus_tail;
             else if (_vid == koshka)
-                Tail = System.Windows.Media.Brushes.Blue;
+                Tail = koshka_tail;
             else if (_vid == privedenie)
-                Tail = System.Windows.Media.Brushes.Yellow;
+                Tail = privedenie_tail;
             else
             {
                 System.Windows.MessageBox.Show("Непонятное существо");

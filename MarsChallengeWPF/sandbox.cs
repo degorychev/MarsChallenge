@@ -73,13 +73,9 @@ namespace MarsChallengeWPF
 
         public Queue<UIElement> render(int _width, int _height)
         {
-            //Pen black_pen = new Pen(Color.Black);
-            //Pen red_pen = new Pen(Color.Red);
             var black_brush = Brushes.Black;
             var red_brush = Brushes.Red;
 
-            //Bitmap bm = new Bitmap(_width, _height);
-            //Graphics gr = Graphics.FromImage(bm);
             Queue<UIElement> elements = new Queue<UIElement>();
              
             int width = _width / _n;
@@ -112,6 +108,7 @@ namespace MarsChallengeWPF
                 };
                 elements.Enqueue(addline);
             }
+            //ловушки
             for (int x = 0; x < _n; x++)
                 for (int y = 0; y < _n; y++)
                 {
@@ -132,7 +129,7 @@ namespace MarsChallengeWPF
                     while (image.Count > 0)
                         elements.Enqueue(image.Dequeue());
                 }
-
+            //ходы
             for (int i = 0; i < players.Count; i++)
             {
                 var player = players[i];
@@ -142,49 +139,27 @@ namespace MarsChallengeWPF
                 {
                     Point newkoord = moves[j];
                     elements.Enqueue(GeneratorLine(getCenter(koord, width, height), getCenter(newkoord, width, height), player.Tail));
-                    //gr.DrawLine(new Pen(player.Tail), getCenter(koord, width, height), getCenter(newkoord, width, height));
+                    elements.Enqueue(GeneratorDot(getCenter(newkoord, width, height), player.Tail));
+
                     koord = newkoord;
                 }
             }
-
-            
-
-            //gr.DrawLine(black_pen, width * x, 0, width * x, _height);
-            //gr.DrawLine(black_pen, 0, height * y, _width, height * y);
-
-            /*
-
-            //Ловушки
-            for (int x = 0; x < _n; x++)
-                for (int y = 0; y < _n; y++)
-                {
-                    if (!_pole[x, y].activ())
-                    {
-                        int border = 3;
-                        Brush br = red_pen.Brush;
-                        gr.FillRectangle(br, new Rectangle(width * x + border, height * y + border, width - border * 2, height - border * 2));
-                    }
-                    gr.DrawImage(_pole[x, y].getImage(width, height), new Rectangle(width * x, height * y, width, height));
-                }
-            //Ходы
-            for (int i = 0; i < players.Count; i++)
-            {
-                var player = players[i];
-                var moves = player.moves;
-                Point koord = moves[0];
-                for (int j = 1; j < moves.Count; j++)
-                {
-                    Point newkoord = moves[j];
-                    gr.DrawLine(new Pen(player.Tail), getCenter(koord, width, height), getCenter(newkoord, width, height));
-                    koord = newkoord;
-                }
-            }
-            gr.Save();
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            return bm;
-            */
             return elements;
+        }
+        private Ellipse GeneratorDot(Point p2, Brush br)
+        {
+            int width = 15;
+            Ellipse output = new Ellipse
+            {
+                Width = width,
+                Height = width,
+                Stroke = br,
+                StrokeThickness = 10
+            };
+            double left = p2.X - (width / 2);
+            double top = p2.Y - (width / 2);
+            output.Margin = new Thickness(left, top, 0, 0);
+            return output;
         }
         private Line GeneratorLine(Point p1, Point p2, Brush br)
         {

@@ -28,9 +28,18 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Button x:Name="StartKoshka" Content="Запустить кошку" Margin="0,0,0,5" Height="30" VerticalAlignment="Bottom" Click="StartKoshka_Click"/>
-            <Button x:Name="StartVampus" Content="Запустить вампуса" Grid.Row="1" Height="30" VerticalAlignment="Center" Click="StartVampus_Click"/>
-            <Button x:Name="StartPrivedenie" Content="Запустить приведение" Grid.Row="2" Margin="0,5,0,0" Height="30" VerticalAlignment="Top" Click="StartPrivedenie_Click"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="80*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="StartKoshka" Content="Запустить кошку" Grid.Column="1" Margin="0,0,0,5" Height="30" VerticalAlignment="Center" Click="StartKoshka_Click"/>
+            <Button x:Name="StartVampus" Content="Запустить вампуса" Grid.Column="1" Grid.Row="1" Height="30" VerticalAlignment="Center" Click="StartVampus_Click" Margin="0,7,0,8"/>
+            <Button x:Name="StartPrivedenie" Content="Запустить приведение" Grid.Column="1" Grid.Row="2" Margin="0,5,0,0" Height="30" VerticalAlignment="Center" Click="StartPrivedenie_Click"/>
+
+            <Canvas x:Name="koshka_example" SizeChanged="koshka_example_SizeChanged"/>
+            <Canvas x:Name="vampus_example" Grid.Row="1" SizeChanged="vampus_example_SizeChanged"/>
+            <Canvas x:Name="privedenie_example" Grid.Row="2" SizeChanged="privedenie_example_SizeChanged"/>
+
         </Grid>
     </Grid>
 </Window>
