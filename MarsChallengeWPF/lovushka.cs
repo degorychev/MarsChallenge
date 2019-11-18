@@ -82,6 +82,12 @@ namespace MarsChallengeWPF
 
         public Queue<UIElement> getImage(int startx, int starty, int _width, int _height)
         {
+            int border = 3;
+            startx += border;
+            starty += border;
+            _width -= border * 2;
+            _height -= border * 2;
+
             Queue<UIElement> elements = new Queue<UIElement>();
             int width = startx + _width;
             int height = starty + _height;
