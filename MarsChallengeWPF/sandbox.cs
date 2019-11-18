@@ -14,6 +14,7 @@ namespace MarsChallengeWPF
     public class sandbox
     {
         int _n;
+        int _n_lovush;
         lovushka[,] _pole;
         List<player> players;
 
@@ -24,6 +25,7 @@ namespace MarsChallengeWPF
         public sandbox(int n)
         {
             _n = n;
+            _n_lovush = 4;
             _pole = new lovushka[n, n];
             players = new List<player>();
             generator();
@@ -41,12 +43,10 @@ namespace MarsChallengeWPF
         private void generator()
         {
             Queue<lovushka> listtypes = new Queue<lovushka>();
-            listtypes.Enqueue(new lovushka(lovushka.verevka));
-            listtypes.Enqueue(new lovushka(lovushka.verevka));
-            listtypes.Enqueue(new lovushka(lovushka.verevka));
-            listtypes.Enqueue(new lovushka(lovushka.detektor));
-            listtypes.Enqueue(new lovushka(lovushka.detektor));
-            listtypes.Enqueue(new lovushka(lovushka.detektor));
+            for (int i =0; i< _n_lovush; i++)
+                listtypes.Enqueue(new lovushka(lovushka.verevka));
+            for (int i = 0; i < _n_lovush; i++)
+                listtypes.Enqueue(new lovushka(lovushka.detektor));
             if (_n * _n < listtypes.Count)
             {
                 System.Windows.MessageBox.Show("Количество ловушек превышает количество клеток");
