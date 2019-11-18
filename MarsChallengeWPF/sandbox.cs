@@ -25,7 +25,7 @@ namespace MarsChallengeWPF
         public sandbox(int n)
         {
             _n = n;
-            _n_lovush = 4;
+            _n_lovush = n*n/3;
             _pole = new lovushka[n, n];
             players = new List<player>();
             generator();

@@ -8,9 +8,9 @@
         Title="Задание" Height="437" Width="264">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
         </Grid.RowDefinitions>
         <Canvas x:Name="MainCanvas" SizeChanged="MainCanvas_SizeChanged"/>
         <Grid Grid.Row="1">
