@@ -43,7 +43,7 @@ namespace MarsChallenge
         }
         public void tick()
         {
-            int napr = rnd.Next(3);
+            int napr = rnd.Next(4);
             switch (napr)
             {
                 case 0:
