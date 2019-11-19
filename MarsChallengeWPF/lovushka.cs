@@ -72,7 +72,7 @@ namespace MarsChallengeWPF
                 X2 = _x2,
                 Y1 = _y1,
                 Y2 = _y2,
-                Stroke = Brushes.Brown,
+                Stroke = new SolidColorBrush(SettingsMain.Default.TrapColor),
                 StrokeThickness = 2
             };
             return output;

@@ -74,8 +74,8 @@ namespace MarsChallengeWPF
 
         public LinkedList<Queue<UIElement>>render(int _width, int _height)
         {
-            var black_brush = Brushes.Black;
-            var red_brush = Brushes.Red;
+            var black_brush = new SolidColorBrush(SettingsMain.Default.GridColor);
+            var red_brush = new SolidColorBrush(SettingsMain.Default.TrapTrigger);
 
             LinkedList<Queue<UIElement>> elements = new LinkedList<Queue<UIElement>>();
 

@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MarsChallengeWPF" GeneratedClassName="SettingsMain">
+  <Profiles />
+  <Settings>
+    <Setting Name="vampus_tail" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF008000</Value>
+    </Setting>
+    <Setting Name="koshka_tail" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF0000FF</Value>
+    </Setting>
+    <Setting Name="privedenie_tail" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FFFFFF00</Value>
+    </Setting>
+    <Setting Name="TrapTrigger" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FFFF0000</Value>
+    </Setting>
+    <Setting Name="GridColor" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF000000</Value>
+    </Setting>
+    <Setting Name="TrapColor" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FFA52A2A</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

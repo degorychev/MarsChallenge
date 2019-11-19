@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace MarsChallengeWPF
 {
@@ -13,9 +14,9 @@ namespace MarsChallengeWPF
         public const int koshka = 1;
         public const int privedenie = 2;
 
-        public static System.Windows.Media.Brush vampus_tail = System.Windows.Media.Brushes.Green;
-        public static System.Windows.Media.Brush koshka_tail = System.Windows.Media.Brushes.Blue;
-        public static System.Windows.Media.Brush privedenie_tail = System.Windows.Media.Brushes.Yellow;
+        public static System.Windows.Media.Brush vampus_tail = new  SolidColorBrush(SettingsMain.Default.vampus_tail);
+        public static System.Windows.Media.Brush koshka_tail = new SolidColorBrush(SettingsMain.Default.koshka_tail);
+        public static System.Windows.Media.Brush privedenie_tail = new SolidColorBrush(SettingsMain.Default.privedenie_tail);
 
         public int _vid;
         public System.Windows.Point _koord;

@@ -65,6 +65,11 @@
     </ApplicationDefinition>
     <Compile Include="ColorCell.cs" />
     <Compile Include="sandbox.cs" />
+    <Compile Include="SettingsMain.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>SettingsMain.settings</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -102,6 +107,10 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SettingsMain.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SettingsMain.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
