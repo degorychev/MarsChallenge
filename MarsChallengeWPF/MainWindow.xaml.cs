@@ -25,7 +25,7 @@ namespace MarsChallengeWPF
         public MainWindow()
         {
             InitializeComponent();
-            n = 15;
+            n = 10;
             sndb = new sandbox(n);
             paint();
         }

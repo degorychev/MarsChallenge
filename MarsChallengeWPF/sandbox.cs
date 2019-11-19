@@ -17,7 +17,7 @@ namespace MarsChallengeWPF
         int _n_lovush;
         lovushka[,] _pole;
         List<player> players;
-
+        ColorCell[,] _colors;
         public void clearPlayers()
         {
             players.Clear();
@@ -27,6 +27,7 @@ namespace MarsChallengeWPF
             _n = n;
             _n_lovush = n*n/3;
             _pole = new lovushka[n, n];
+
             players = new List<player>();
             generator();
         }
@@ -77,7 +78,7 @@ namespace MarsChallengeWPF
             var red_brush = Brushes.Red;
 
             Queue<UIElement> elements = new Queue<UIElement>();
-             
+
             int width = _width / _n;
             int height = _height / _n;
 
@@ -109,9 +110,12 @@ namespace MarsChallengeWPF
                 elements.Enqueue(addline);
             }
             //ловушки
+            _colors = new ColorCell[_n, _n];
             for (int x = 0; x < _n; x++)
                 for (int y = 0; y < _n; y++)
                 {
+                    _colors[x, y] = new ColorCell();
+
                     if (!_pole[x, y].activ())
                     {
                         int border = 3;
@@ -134,12 +138,22 @@ namespace MarsChallengeWPF
             {
                 var player = players[i];
                 var moves = player.moves;
+                for (int j = 0; j < moves.Count-1; j++)
+                {
+                    Point koord = moves[j];
+                    _colors[(int)koord.X, (int)koord.Y].addcolor(player.Tail);
+                }
+            }
+            for (int i = 0; i < players.Count; i++)
+            {
+                var player = players[i];
+                var moves = player.moves;
                 Point koord = moves[0];
                 for (int j = 1; j < moves.Count; j++)
                 {
                     Point newkoord = moves[j];
-                    elements.Enqueue(GeneratorLine(getCenter(koord, width, height), getCenter(newkoord, width, height), player.Tail));
-                    elements.Enqueue(GeneratorDot(getCenter(newkoord, width, height), player.Tail));
+                    elements.Enqueue(GeneratorLine(getCenter(koord, width, height), getCenter(newkoord, width, height), _colors[(int)koord.X, (int)koord.Y].getColor()));
+                    elements.Enqueue(GeneratorDot(getCenter(newkoord, width, height), _colors[(int)koord.X, (int)koord.Y].getColor()));
 
                     koord = newkoord;
                 }

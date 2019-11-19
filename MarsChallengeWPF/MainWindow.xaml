@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MarsChallengeWPF"
         mc:Ignorable="d"
-        Title="Задание" Height="437" Width="264">
+        Title="Задание" Height="552" Width="379">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60*" />
