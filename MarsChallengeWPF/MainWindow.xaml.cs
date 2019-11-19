@@ -34,8 +34,15 @@ namespace MarsChallengeWPF
         {
             MainCanvas.Children.Clear();
             var elements = sndb.render((int)MainCanvas.ActualWidth, (int)MainCanvas.ActualHeight);
-            while (elements.Count != 0)
-                MainCanvas.Children.Add(elements.Dequeue());
+
+            var node = elements.First;
+            while (node != null)
+            {
+                var que = node.Value;
+                while(que.Count>0)
+                    MainCanvas.Children.Add(que.Dequeue());
+                node = node.Next;
+            }
         }
 
         private void ClearTraekt_Click(object sender, RoutedEventArgs e)

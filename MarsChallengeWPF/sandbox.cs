@@ -72,17 +72,18 @@ namespace MarsChallengeWPF
                         _pole[x, y] = new lovushka(lovushka.nul);
         }
 
-        public Queue<UIElement> render(int _width, int _height)
+        public LinkedList<Queue<UIElement>>render(int _width, int _height)
         {
             var black_brush = Brushes.Black;
             var red_brush = Brushes.Red;
 
-            Queue<UIElement> elements = new Queue<UIElement>();
+            LinkedList<Queue<UIElement>> elements = new LinkedList<Queue<UIElement>>();
 
             int width = _width / _n;
             int height = _height / _n;
 
             //Сетка
+            Queue<UIElement> setka = new Queue<UIElement>();
             for (int x = 1; x < _n; x++)
             {
                 var addline = new Line
@@ -94,7 +95,7 @@ namespace MarsChallengeWPF
                     Stroke = black_brush,
                     StrokeThickness = 1
                 };
-                elements.Enqueue(addline);
+                setka.Enqueue(addline);
             }
             for (int y = 1; y < _n; y++)
             {
@@ -107,9 +108,11 @@ namespace MarsChallengeWPF
                     Stroke = black_brush,
                     StrokeThickness = 1
                 };
-                elements.Enqueue(addline);
+                setka.Enqueue(addline);
             }
-            //ловушки
+            elements.AddLast(setka);
+            //цвета ловушек
+            Queue<UIElement> lovush = new Queue<UIElement>();
             _colors = new ColorCell[_n, _n];
             for (int x = 0; x < _n; x++)
                 for (int y = 0; y < _n; y++)
@@ -127,18 +130,27 @@ namespace MarsChallengeWPF
                             Stroke = red_brush,
                             Fill = red_brush
                         };
-                        elements.Enqueue(addrect);
-                    }
-                    var image = _pole[x, y].getImage(width * x, height * y, width, height);
-                    while (image.Count > 0)
-                        elements.Enqueue(image.Dequeue());
+                        lovush.Enqueue(addrect);
+                    }                    
                 }
+            elements.AddLast(lovush);
+            //ловушки
+            for (int x = 0; x < _n; x++)
+                for (int y = 0; y < _n; y++)
+                {
+                    var image = _pole[x, y].getImage(width * x, height * y, width, height);
+                    elements.AddLast(image);
+                }
+
+
             //ходы
+            Queue<UIElement> hod = new Queue<UIElement>();
+
             for (int i = 0; i < players.Count; i++)
             {
                 var player = players[i];
                 var moves = player.moves;
-                for (int j = 0; j < moves.Count-1; j++)
+                for (int j = 0; j < moves.Count - 1; j++)
                 {
                     Point koord = moves[j];
                     _colors[(int)koord.X, (int)koord.Y].addcolor(player.Tail);
@@ -152,12 +164,14 @@ namespace MarsChallengeWPF
                 for (int j = 1; j < moves.Count; j++)
                 {
                     Point newkoord = moves[j];
-                    elements.Enqueue(GeneratorLine(getCenter(koord, width, height), getCenter(newkoord, width, height), _colors[(int)koord.X, (int)koord.Y].getColor()));
-                    elements.Enqueue(GeneratorDot(getCenter(newkoord, width, height), _colors[(int)koord.X, (int)koord.Y].getColor()));
+                    hod.Enqueue(GeneratorLine(getCenter(koord, width, height), getCenter(newkoord, width, height), _colors[(int)koord.X, (int)koord.Y].getColor()));
+                    hod.Enqueue(GeneratorDot(getCenter(newkoord, width, height), _colors[(int)koord.X, (int)koord.Y].getColor()));
 
                     koord = newkoord;
                 }
             }
+            elements.AddLast(hod);
+
             return elements;
         }
         private Ellipse GeneratorDot(Point p2, Brush br)
